@@ -61,7 +61,7 @@ Criar o esqueleto do repositório com estrutura de pastas, Docker local e a este
 - O CI usa banco Postgres via `services` do GitHub Actions (espelha produção) ou SQLite como fallback
 - A Sub-Tarefa 11 não é onde o deploy começa — o deploy começa aqui
 
-**Status:** [ ] pending
+**Status:** [x] completed
 
 ---
 
@@ -89,7 +89,7 @@ Definir todas as entidades do sistema em SQLAlchemy e criar as migrations com Al
 - `pix_key_type` pode ser: CPF, CNPJ, EMAIL, PHONE, RANDOM
 - Um casal pode ter apenas uma lista ativa (restrição a definir via lógica de negócio)
 
-**Status:** [ ] pending
+**Status:** [x] completed
 
 ---
 
@@ -120,7 +120,7 @@ Implementar o sistema de autenticação completo para os noivos: cadastro, login
 - Access token: expiração curta (ex: 30min); Refresh token: expiração longa (ex: 7 dias)
 - Refresh token pode ser armazenado em banco ou apenas validado por assinatura (definir durante impl.)
 
-**Status:** [ ] pending
+**Status:** [x] completed
 
 ---
 
