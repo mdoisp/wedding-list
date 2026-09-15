@@ -124,11 +124,17 @@ wedding-list/
 
 ### Variáveis de ambiente em produção (Railway)
 
-Configure no painel da Railway:
-- `DATABASE_URL` — URL do banco PostgreSQL (provisionado pela Railway)
-- `SECRET_KEY` — chave secreta para JWT
-- `RESEND_API_KEY` — chave de API do Resend
+Configure no painel da Railway (serviço `backend`):
+- `DATABASE_URL` — URL do banco PostgreSQL (referência `${{Postgres.DATABASE_URL}}`)
+- `SECRET_KEY` — chave secreta para JWT (gerada aleatoriamente)
+- `RESEND_API_KEY` — chave de API do Resend (opcional inicialmente)
 - `ENVIRONMENT=production`
+- `ALLOWED_ORIGINS` — URL do frontend na Vercel (ex: `https://seu-projeto.vercel.app`)
+
+### Variáveis de ambiente em produção (Vercel)
+
+Configure no painel da Vercel:
+- `NEXT_PUBLIC_API_URL` — URL pública da API no Railway (ex: `https://seu-backend.up.railway.app`)
 
 ## Fluxo Principal
 
