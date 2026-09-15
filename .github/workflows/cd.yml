@@ -20,7 +20,9 @@ jobs:
       - name: Deploy to Railway
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        run: railway up --service backend --detach
+        run: |
+          cd backend
+          railway up --service backend --detach
 
   deploy-frontend:
     name: Deploy Frontend (Vercel)
