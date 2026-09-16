@@ -4,27 +4,10 @@ on:
   push:
     branches: ["main"]
 
-# Requires CI to pass before running (enforced via branch protection)
-# This workflow deploys backend to Railway and frontend to Vercel
+# Deploys frontend to Vercel and verifies health of production services
+# Note: Backend is deployed automatically by Railway via native GitHub integration
 
 jobs:
-  deploy-backend:
-    name: Deploy Backend (Railway)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Railway CLI
-        run: npm install -g @railway/cli
-
-      - name: Deploy to Railway
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-        run: |
-          cd backend
-          railway up --service backend --detach
-
   deploy-frontend:
     name: Deploy Frontend (Vercel)
     runs-on: ubuntu-latest
@@ -43,3 +26,14 @@ jobs:
           vercel pull --yes --environment=production --token=$VERCEL_TOKEN
           vercel build --prod --token=$VERCEL_TOKEN
           vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+
+  verify-production:
+    name: Verify Production Health
+    runs-on: ubuntu-latest
+    needs: [deploy-frontend]
+    steps:
+      - name: Check Backend Health (Railway)
+        run: curl --fail --retry 5 --retry-delay 5 --retry-connrefused https://backend-wedding-list.up.railway.app/health
+
+      - name: Check Frontend Health (Vercel)
+        run: curl --fail --retry 5 --retry-delay 5 --retry-connrefused https://wedding-list-pearl.vercel.app

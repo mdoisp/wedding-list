@@ -117,10 +117,12 @@ wedding-list/
 
 | Secret | Descrição |
 |---|---|
-| `RAILWAY_TOKEN` | Token de autenticação da Railway CLI |
 | `VERCEL_TOKEN` | Token de autenticação da Vercel CLI |
 | `VERCEL_ORG_ID` | ID da organização na Vercel |
 | `VERCEL_PROJECT_ID` | ID do projeto na Vercel |
+
+> O backend no Railway é implantado automaticamente a cada push na branch `main` via integração nativa do GitHub.
+
 
 ### Variáveis de ambiente em produção (Railway)
 
