@@ -22,6 +22,6 @@ RUN chmod +x /app/start.sh
 RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
 USER appuser
 
-EXPOSE 8000
+EXPOSE 8080
 
 CMD ["/app/start.sh"]
