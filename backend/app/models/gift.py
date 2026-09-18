@@ -20,9 +20,7 @@ if TYPE_CHECKING:
 class Gift(Base):
     __tablename__ = "gifts"
 
-    id: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True), primary_key=True, default=uuid.uuid4
-    )
+    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     gift_list_id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True), ForeignKey("gift_lists.id", ondelete="CASCADE"), nullable=False
     )
@@ -32,9 +30,7 @@ class Gift(Base):
     price: Mapped[Decimal | None] = mapped_column(Numeric(10, 2), nullable=True)
     store_link: Mapped[str | None] = mapped_column(String(2048), nullable=True)
     is_reserved: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), server_default=func.now()
-    )
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
     gift_list: Mapped[GiftList] = relationship("GiftList", back_populates="gifts")
     reservation: Mapped[Reservation | None] = relationship(

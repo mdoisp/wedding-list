@@ -18,9 +18,7 @@ if TYPE_CHECKING:
 class Couple(Base):
     __tablename__ = "couples"
 
-    id: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True), primary_key=True, default=uuid.uuid4
-    )
+    id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     name: Mapped[str] = mapped_column(String(200), nullable=False)
     email: Mapped[str] = mapped_column(String(254), unique=True, nullable=False, index=True)
     hashed_password: Mapped[str] = mapped_column(String(255), nullable=False)
@@ -29,9 +27,7 @@ class Couple(Base):
         String(20), nullable=True
     )  # CPF | CNPJ | EMAIL | PHONE | RANDOM
     email_notifications_enabled: Mapped[bool] = mapped_column(Boolean, default=True)
-    created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), server_default=func.now()
-    )
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
     gift_lists: Mapped[list[GiftList]] = relationship(
         "GiftList", back_populates="couple", cascade="all, delete-orphan"

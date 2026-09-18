@@ -150,7 +150,7 @@ Implementar os endpoints para os noivos criarem e gerenciarem sua lista de prese
 - `public_token` é imutável após criação — é a URL que será compartilhada com os convidados
 - Para MVP, imagem como URL externa é suficiente e simplifica infraestrutura
 
-**Status:** [ ] pending
+**Status:** [x] completed
 
 ---
 
