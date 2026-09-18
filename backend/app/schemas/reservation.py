@@ -38,6 +38,7 @@ class GiftListPublicResponse(BaseModel):
     title: str
     wedding_date: date | None = None
     couple_name: str
+    has_pix: bool = False
     gifts: list[GiftPublicResponse] = []
 
     model_config = ConfigDict(from_attributes=True)
