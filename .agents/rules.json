@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "git": {
+      "commit_language": "en",
+      "format": "conventional_commits",
+      "instruction": "All commit messages must be written in English without exception."
+    },
+    "ci_cd": {
+      "verify_pipeline_after_subtask": true
+    }
+  }
+}

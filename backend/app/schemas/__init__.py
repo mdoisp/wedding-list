@@ -8,6 +8,12 @@ from app.schemas.gift_list import (
     GiftListResponse,
     GiftListUpdateRequest,
 )
+from app.schemas.reservation import (
+    GiftListPublicResponse,
+    GiftPublicResponse,
+    ReservationResponse,
+    ReserveGiftRequest,
+)
 
 
 class RegisterRequest(BaseModel):
@@ -51,4 +57,8 @@ __all__ = [
     "GiftListCreateRequest",
     "GiftListUpdateRequest",
     "GiftListResponse",
+    "ReserveGiftRequest",
+    "ReservationResponse",
+    "GiftPublicResponse",
+    "GiftListPublicResponse",
 ]
