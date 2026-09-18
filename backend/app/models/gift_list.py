@@ -38,3 +38,7 @@ class GiftList(Base):
     @property
     def couple_name(self) -> str:
         return self.couple.name if self.couple else ""
+
+    @property
+    def has_pix(self) -> bool:
+        return bool(self.couple and self.couple.pix_key)

@@ -206,7 +206,7 @@ Gerar um QR Code no padrão BR Code (EMV, Banco Central do Brasil) com a chave P
 - Lib de referência: `python-pix` ou implementação manual do payload (simples, ~50 linhas)
 - Valor livre: o QR Code não precisa ter valor fixo — o convidado digita o valor no app
 
-**Status:** [ ] pending
+**Status:** [x] completed
 
 ---
 

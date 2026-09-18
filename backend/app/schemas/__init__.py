@@ -8,6 +8,7 @@ from app.schemas.gift_list import (
     GiftListResponse,
     GiftListUpdateRequest,
 )
+from app.schemas.pix import PixQrCodeResponse
 from app.schemas.reservation import (
     GiftListPublicResponse,
     GiftPublicResponse,
@@ -61,4 +62,5 @@ __all__ = [
     "ReservationResponse",
     "GiftPublicResponse",
     "GiftListPublicResponse",
+    "PixQrCodeResponse",
 ]
