@@ -1,7 +1,15 @@
 import uuid
 from decimal import Decimal
 
-from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
+from fastapi import (
+    APIRouter,
+    BackgroundTasks,
+    Depends,
+    HTTPException,
+    Query,
+    Response,
+    status,
+)
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 
@@ -45,11 +53,12 @@ def reserve_gift(
     public_token: uuid.UUID,
     gift_id: uuid.UUID,
     data: ReserveGiftRequest,
+    background_tasks: BackgroundTasks,
     db: Session = Depends(get_db),
 ) -> Reservation:
     service = ReservationService(db)
     try:
-        return service.reserve_gift(public_token, gift_id, data)
+        return service.reserve_gift(public_token, gift_id, data, background_tasks=background_tasks)
     except NotFoundError as exc:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(exc)) from exc
     except ConflictError as exc:

@@ -236,7 +236,7 @@ Enviar e-mails automáticos após uma reserva: um para o convidado (confirmaçã
 - Background task do FastAPI: o e-mail é disparado após a resposta HTTP ser enviada ao convidado, sem travar a requisição
 - Templates devem ser simples mas apresentáveis — é uma vitrine
 
-**Status:** [ ] pending
+**Status:** [x] completed
 
 ---
 
