@@ -31,9 +31,7 @@ def login(data: LoginRequest, db: Session = Depends(get_db)) -> TokenResponse:
     try:
         couple = service.authenticate(data)
     except ValueError as exc:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED, detail=str(exc)
-        ) from exc
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=str(exc)) from exc
     return service.create_tokens(couple)
 
 
@@ -43,9 +41,7 @@ def refresh(data: RefreshRequest, db: Session = Depends(get_db)) -> TokenRespons
     try:
         return service.refresh_token(data.refresh_token)
     except Exception as exc:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED, detail=str(exc)
-        ) from exc
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=str(exc)) from exc
 
 
 @router.get("/me", response_model=CouplePublicResponse)

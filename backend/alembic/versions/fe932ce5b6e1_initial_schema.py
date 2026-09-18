@@ -58,9 +58,7 @@ def upgrade() -> None:
         sa.PrimaryKeyConstraint("id"),
         sa.UniqueConstraint("public_token"),
     )
-    op.create_index(
-        op.f("ix_gift_lists_public_token"), "gift_lists", ["public_token"], unique=True
-    )
+    op.create_index(op.f("ix_gift_lists_public_token"), "gift_lists", ["public_token"], unique=True)
 
     op.create_table(
         "gifts",

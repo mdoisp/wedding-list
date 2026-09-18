@@ -2,6 +2,13 @@ import uuid
 
 from pydantic import BaseModel, EmailStr
 
+from app.schemas.gift import GiftCreateRequest, GiftResponse, GiftUpdateRequest
+from app.schemas.gift_list import (
+    GiftListCreateRequest,
+    GiftListResponse,
+    GiftListUpdateRequest,
+)
+
 
 class RegisterRequest(BaseModel):
     name: str
@@ -30,3 +37,18 @@ class CouplePublicResponse(BaseModel):
     email: str
 
     model_config = {"from_attributes": True}
+
+
+__all__ = [
+    "RegisterRequest",
+    "LoginRequest",
+    "TokenResponse",
+    "RefreshRequest",
+    "CouplePublicResponse",
+    "GiftCreateRequest",
+    "GiftUpdateRequest",
+    "GiftResponse",
+    "GiftListCreateRequest",
+    "GiftListUpdateRequest",
+    "GiftListResponse",
+]

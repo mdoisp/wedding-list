@@ -5,6 +5,9 @@ columns, and relationships. They do not require a live database connection.
 """
 
 import uuid
+from typing import cast
+
+from sqlalchemy import Table
 
 from app.models import Couple, Gift, GiftList, Reservation
 
@@ -71,18 +74,20 @@ def test_gift_list_public_token_is_unique() -> None:
 
 
 def test_reservation_gift_id_is_unique() -> None:
-    for constraint in Reservation.__table__.constraints:
-        cols = [c.name for c in constraint.columns]
-        if cols == ["gift_id"] and hasattr(constraint, "unique") and constraint.unique:
-            return
-        # UniqueConstraint
-        if type(constraint).__name__ == "UniqueConstraint" and cols == ["gift_id"]:
-            return
-    # Also acceptable: the column itself has unique=True
-    gift_id_col = Reservation.__table__.c["gift_id"]
+    res_table = cast(Table, Reservation.__table__)
+    for constraint in res_table.constraints:
+        cols_attr = getattr(constraint, "columns", None)
+        if cols_attr is not None:
+            cols = [c.name for c in cols_attr]
+            if cols == ["gift_id"] and getattr(constraint, "unique", False):
+                return
+            if type(constraint).__name__ == "UniqueConstraint" and cols == ["gift_id"]:
+                return
+    gift_id_col = res_table.c["gift_id"]
     assert gift_id_col.unique is True or any(
-        type(c).__name__ == "UniqueConstraint" and list(c.columns.keys()) == ["gift_id"]
-        for c in Reservation.__table__.constraints
+        type(c).__name__ == "UniqueConstraint"
+        and [col.name for col in getattr(c, "columns", [])] == ["gift_id"]
+        for c in res_table.constraints
     )
 
 

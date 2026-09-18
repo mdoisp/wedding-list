@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.views.auth import router as auth_router
 from app.views.health import router as health_router
+from app.views.lists import router as lists_router
 
 app = FastAPI(
     title="Wedding List API",
@@ -23,3 +24,4 @@ app.add_middleware(
 
 app.include_router(health_router)
 app.include_router(auth_router)
+app.include_router(lists_router)
