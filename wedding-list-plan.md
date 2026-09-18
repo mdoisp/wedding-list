@@ -179,7 +179,7 @@ Implementar os endpoints públicos (sem autenticação) acessados pelos convidad
 - O `public_token` é UUID aleatório, o que torna força bruta impraticável
 - Nenhum dado sensível do casal é exposto neste endpoint (apenas nome, lista, presentes)
 
-**Status:** [ ] pending
+**Status:** [x] completed
 
 ---
 

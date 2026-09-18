@@ -34,3 +34,7 @@ class GiftList(Base):
     gifts: Mapped[list[Gift]] = relationship(
         "Gift", back_populates="gift_list", cascade="all, delete-orphan"
     )
+
+    @property
+    def couple_name(self) -> str:
+        return self.couple.name if self.couple else ""
