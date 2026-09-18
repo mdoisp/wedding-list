@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     access_token_expire_minutes: int = 30
     refresh_token_expire_days: int = 7
     resend_api_key: str = ""
+    email_from: str = "Wedding List <onboarding@resend.dev>"
     environment: str = "development"
     allowed_origins: str = "*"
 
