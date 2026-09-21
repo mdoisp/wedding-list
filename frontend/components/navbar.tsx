@@ -19,8 +19,8 @@ export function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#EAF0E9] text-[#384C37] transition-colors group-hover:bg-[#DFE8DE]">
-            <Heart className="h-5 w-5 fill-[#384C37]" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-50 text-red-500 border border-red-100/80 transition-colors group-hover:bg-red-100/80 shadow-xs">
+            <Heart className="h-5 w-5 fill-red-500 text-red-500" />
           </div>
           <div className="flex flex-col">
             <span className="text-lg font-bold tracking-tight text-[#1A231B]">

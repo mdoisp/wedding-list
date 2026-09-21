@@ -34,8 +34,8 @@ export default function DashboardPage() {
       <header className="sticky top-0 z-40 border-b border-[#E8E2D8] bg-[#FAF8F5]/95 backdrop-blur-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#EAF0E9] text-[#384C37]">
-              <Heart className="h-5 w-5 fill-[#384C37]" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-red-50 text-red-500 border border-red-100/80">
+              <Heart className="h-5 w-5 fill-red-500 text-red-500" />
             </div>
             <span className="text-lg font-bold tracking-tight text-[#182319]">
               Wedding List

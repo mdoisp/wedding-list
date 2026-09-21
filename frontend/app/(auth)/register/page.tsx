@@ -56,8 +56,8 @@ export default function RegisterPage() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-[#FAF8F5] px-4 py-12 sm:px-6 lg:px-8">
       {/* Top Logo */}
       <Link href="/" className="mb-8 flex items-center gap-2.5 group">
-        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#EAF0E9] text-[#384C37] transition-colors group-hover:bg-[#DFE8DE]">
-          <Heart className="h-6 w-6 fill-[#384C37]" />
+        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-red-50 text-red-500 border border-red-100/80 transition-colors group-hover:bg-red-100/80 shadow-xs">
+          <Heart className="h-6 w-6 fill-red-500 text-red-500" />
         </div>
         <div className="flex flex-col">
           <span className="text-xl font-bold tracking-tight text-[#182319]">

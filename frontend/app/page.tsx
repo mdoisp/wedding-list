@@ -13,6 +13,7 @@ import {
   HelpCircle,
   ExternalLink,
   Coins,
+  Heart,
 } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { Button } from "@/components/ui/button";
@@ -396,8 +397,9 @@ export default function HomePage() {
             <div>
               <Link href="/register">
                 <Button
+                  variant="white"
                   size="lg"
-                  className="bg-white text-[#2D3E2C] hover:bg-[#FAF8F5] shadow-lg font-bold px-8 py-3.5"
+                  className="font-bold px-9 py-4 text-[#182319] bg-white hover:bg-[#FAF8F5] border-2 border-white shadow-xl hover:scale-[1.02] transition-all cursor-pointer"
                 >
                   Criar Minha Lista Agora
                 </Button>
@@ -411,7 +413,7 @@ export default function HomePage() {
       <footer className="border-t border-[#E8E2D8] bg-[#FAF8F5] py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#6B776E]">
           <div className="flex items-center gap-2">
-            <Gift className="h-4 w-4 text-[#384C37]" />
+            <Heart className="h-4 w-4 fill-red-500 text-red-500" />
             <span className="font-semibold text-[#182319]">Wedding List</span>
             <span>— Todos os direitos reservados.</span>
           </div>
