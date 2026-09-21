@@ -21,19 +21,19 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shadow-sm active:scale-[0.98]";
+      "inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer shadow-xs active:scale-[0.98]";
 
     const variants = {
       primary:
-        "bg-rose-600 hover:bg-rose-700 text-white focus:ring-rose-500 shadow-rose-200",
+        "bg-[#384C37] hover:bg-[#2B3B2A] text-white focus:ring-[#384C37] shadow-sm",
       secondary:
-        "bg-stone-100 hover:bg-stone-200 text-stone-800 focus:ring-stone-400 shadow-stone-100",
+        "bg-[#F2ECE3] hover:bg-[#E7DFD2] text-[#222B23] focus:ring-[#D8CEBE]",
       outline:
-        "border border-stone-300 hover:bg-stone-50 text-stone-700 focus:ring-rose-500",
+        "border border-[#D8D0C3] bg-transparent hover:bg-[#F2ECE3]/60 text-[#2D3E2C] focus:ring-[#384C37]",
       ghost:
-        "text-stone-600 hover:bg-stone-100 hover:text-stone-900 focus:ring-stone-300 shadow-none",
+        "text-[#384C37] hover:bg-[#EAF0E9] hover:text-[#222B23] focus:ring-[#EAF0E9] shadow-none",
       danger:
-        "bg-red-600 hover:bg-red-700 text-white focus:ring-red-500 shadow-red-200",
+        "bg-rose-700 hover:bg-rose-800 text-white focus:ring-rose-600 shadow-rose-200",
     };
 
     const sizes = {

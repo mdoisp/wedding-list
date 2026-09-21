@@ -15,18 +15,18 @@ export function Navbar() {
   }, [checkAuth]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-stone-200/80 bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-[#E8E2D8] bg-[#FAF8F5]/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-50 text-rose-600 transition-colors group-hover:bg-rose-100">
-            <Heart className="h-5 w-5 fill-rose-600" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#EAF0E9] text-[#384C37] transition-colors group-hover:bg-[#DFE8DE]">
+            <Heart className="h-5 w-5 fill-[#384C37]" />
           </div>
           <div className="flex flex-col">
-            <span className="text-lg font-bold tracking-tight text-stone-900">
+            <span className="text-lg font-bold tracking-tight text-[#1A231B]">
               Wedding List
             </span>
-            <span className="text-[10px] font-medium text-rose-600 uppercase tracking-widest">
+            <span className="text-[10px] font-semibold text-[#465F45] uppercase tracking-wider">
               100% Gratuito
             </span>
           </div>
@@ -36,19 +36,19 @@ export function Navbar() {
         <nav className="hidden md:flex md:items-center md:gap-8">
           <Link
             href="/#como-funciona"
-            className="text-sm font-medium text-stone-600 transition-colors hover:text-stone-900"
+            className="text-sm font-medium text-[#465F45] transition-colors hover:text-[#1A231B]"
           >
             Como Funciona
           </Link>
           <Link
             href="/#vantagens"
-            className="text-sm font-medium text-stone-600 transition-colors hover:text-stone-900"
+            className="text-sm font-medium text-[#465F45] transition-colors hover:text-[#1A231B]"
           >
             Vantagens
           </Link>
           <Link
             href="/#faq"
-            className="text-sm font-medium text-stone-600 transition-colors hover:text-stone-900"
+            className="text-sm font-medium text-[#465F45] transition-colors hover:text-[#1A231B]"
           >
             Dúvidas
           </Link>
@@ -68,7 +68,7 @@ export function Navbar() {
                 variant="ghost"
                 size="sm"
                 onClick={() => logout()}
-                className="text-stone-500 hover:text-red-600 gap-1.5"
+                className="text-[#5B6A5A] hover:text-rose-700 gap-1.5"
                 title="Sair"
               >
                 <LogOut className="h-4 w-4" />
@@ -96,7 +96,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="inline-flex items-center justify-center rounded-lg p-2 text-stone-600 hover:bg-stone-100 hover:text-stone-900"
+            className="inline-flex items-center justify-center rounded-lg p-2 text-[#384C37] hover:bg-[#EAF0E9]"
             aria-label="Abrir menu"
           >
             {mobileMenuOpen ? (
@@ -110,30 +110,30 @@ export function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="border-b border-stone-200 bg-white px-4 py-5 shadow-lg md:hidden sm:px-6">
+        <div className="border-b border-[#E8E2D8] bg-[#FAF8F5] px-4 py-5 shadow-lg md:hidden sm:px-6">
           <nav className="flex flex-col gap-4">
             <Link
               href="/#como-funciona"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base font-medium text-stone-700 hover:text-stone-900"
+              className="text-base font-medium text-[#222B23] hover:text-[#384C37]"
             >
               Como Funciona
             </Link>
             <Link
               href="/#vantagens"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base font-medium text-stone-700 hover:text-stone-900"
+              className="text-base font-medium text-[#222B23] hover:text-[#384C37]"
             >
               Vantagens
             </Link>
             <Link
               href="/#faq"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-base font-medium text-stone-700 hover:text-stone-900"
+              className="text-base font-medium text-[#222B23] hover:text-[#384C37]"
             >
               Dúvidas
             </Link>
-            <div className="my-2 border-t border-stone-100" />
+            <div className="my-2 border-t border-[#E8E2D8]" />
             {isAuthenticated ? (
               <div className="flex flex-col gap-2">
                 <Link
@@ -151,7 +151,7 @@ export function Navbar() {
                     logout();
                     setMobileMenuOpen(false);
                   }}
-                  className="w-full justify-start text-red-600 hover:bg-red-50 gap-2"
+                  className="w-full justify-start text-rose-700 hover:bg-rose-50 gap-2"
                 >
                   <LogOut className="h-4 w-4" />
                   Sair da Conta
