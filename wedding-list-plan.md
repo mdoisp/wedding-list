@@ -267,7 +267,7 @@ Criar as primeiras telas do Next.js: a landing page apresentando o Wedding List 
 - Tailwind CSS para estilização rápida e profissional
 - Zustand é mais simples que Redux para este escopo
 
-**Status:** [ ] pending
+**Status:** [x] completed
 
 ---
 
