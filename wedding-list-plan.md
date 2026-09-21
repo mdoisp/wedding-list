@@ -296,7 +296,7 @@ Criar a interface onde os noivos gerenciam sua lista de presentes: adicionar, ed
 - URL pública segue o padrão: `/list/{public_token}`
 - Dados do dashboard virão dos endpoints protegidos por JWT da Sub-Tarefa 4
 
-**Status:** [ ] pending
+**Status:** [x] completed
 
 ---
 

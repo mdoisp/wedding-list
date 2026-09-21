@@ -21,6 +21,15 @@ class GiftUpdateRequest(BaseModel):
     store_link: str | None = Field(default=None, max_length=2048)
 
 
+class ReservationInfo(BaseModel):
+    id: uuid.UUID
+    guest_name: str
+    guest_email: str
+    reserved_at: datetime
+
+    model_config = ConfigDict(from_attributes=True)
+
+
 class GiftResponse(BaseModel):
     id: uuid.UUID
     gift_list_id: uuid.UUID
@@ -31,5 +40,6 @@ class GiftResponse(BaseModel):
     store_link: str | None = None
     is_reserved: bool = False
     created_at: datetime
+    reservation: ReservationInfo | None = None
 
     model_config = ConfigDict(from_attributes=True)

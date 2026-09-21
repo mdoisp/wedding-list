@@ -24,7 +24,7 @@ export function Navbar() {
           </div>
           <div className="flex flex-col">
             <span className="text-lg font-bold tracking-tight text-[#1A231B]">
-              Wedding List
+              Amor em Lista
             </span>
             <span className="text-[10px] font-semibold text-[#465F45] uppercase tracking-wider">
               100% Gratuito

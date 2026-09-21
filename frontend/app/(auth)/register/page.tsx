@@ -61,7 +61,7 @@ export default function RegisterPage() {
         </div>
         <div className="flex flex-col">
           <span className="text-xl font-bold tracking-tight text-[#182319]">
-            Wedding List
+            Amor em Lista
           </span>
           <span className="text-[10px] font-semibold text-[#465F45] uppercase tracking-wider">
             100% Gratuito

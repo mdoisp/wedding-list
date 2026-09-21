@@ -13,10 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Wedding List — Sua Lista de Casamento 100% Gratuita",
+  title: "Amor em Lista — Sua Lista de Casamento 100% Gratuita",
   description:
-    "Crie sua lista de presentes de casamento com Pix direto na sua conta bancária. Zero taxas, sem intermediários e sem vínculo com lojas.",
+    "Crie sua lista de presentes de casamento com presentes em qualquer loja e Pix direto na sua conta bancária. Zero taxas, sem intermediários.",
   keywords: [
+    "amor em lista",
     "lista de casamento",
     "presentes de casamento",
     "casamento gratuito",

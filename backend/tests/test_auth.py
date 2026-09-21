@@ -300,3 +300,36 @@ def test_refresh_rejects_malformed_uuid_sub() -> None:
     )
     resp = client.post("/auth/refresh", json={"refresh_token": token})
     assert resp.status_code == 401
+
+
+def test_update_me_settings() -> None:
+    email, pw = "update_me@example.com", "pw123456"
+    client.post("/auth/register", json={"name": "Original Name", "email": email, "password": pw})
+    login_resp = client.post("/auth/login", json={"email": email, "password": pw})
+    access_token = login_resp.json()["access_token"]
+
+    update_payload = {
+        "name": "Updated Name",
+        "pix_key": "12345678909",
+        "pix_key_type": "CPF",
+        "email_notifications_enabled": False,
+    }
+    resp = client.put(
+        "/auth/me",
+        json=update_payload,
+        headers={"Authorization": f"Bearer {access_token}"},
+    )
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["name"] == "Updated Name"
+    assert body["pix_key"] == "12345678909"
+    assert body["pix_key_type"] == "CPF"
+    assert body["email_notifications_enabled"] is False
+
+    # Check that GET /auth/me also returns the updated values
+    me_resp = client.get("/auth/me", headers={"Authorization": f"Bearer {access_token}"})
+    assert me_resp.status_code == 200
+    me_body = me_resp.json()
+    assert me_body["pix_key"] == "12345678909"
+    assert me_body["pix_key_type"] == "CPF"
+

@@ -38,10 +38,20 @@ class RefreshRequest(BaseModel):
     refresh_token: str
 
 
+class CoupleUpdateRequest(BaseModel):
+    name: str | None = None
+    pix_key: str | None = None
+    pix_key_type: str | None = None
+    email_notifications_enabled: bool | None = None
+
+
 class CouplePublicResponse(BaseModel):
     id: uuid.UUID
     name: str
     email: str
+    pix_key: str | None = None
+    pix_key_type: str | None = None
+    email_notifications_enabled: bool = True
 
     model_config = {"from_attributes": True}
 
@@ -52,6 +62,7 @@ __all__ = [
     "TokenResponse",
     "RefreshRequest",
     "CouplePublicResponse",
+    "CoupleUpdateRequest",
     "GiftCreateRequest",
     "GiftUpdateRequest",
     "GiftResponse",

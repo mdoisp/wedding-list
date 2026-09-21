@@ -21,6 +21,16 @@ export interface CouplePublicResponse {
   id: string;
   name: string;
   email: string;
+  pix_key?: string | null;
+  pix_key_type?: string | null;
+  email_notifications_enabled?: boolean;
+}
+
+export interface CoupleUpdateRequest {
+  name?: string;
+  pix_key?: string | null;
+  pix_key_type?: string | null;
+  email_notifications_enabled?: boolean;
 }
 
 export async function registerCouple(
@@ -44,6 +54,15 @@ export async function loginCouple(
 export async function getMe(): Promise<CouplePublicResponse> {
   return apiClient<CouplePublicResponse>("/auth/me", {
     method: "GET",
+  });
+}
+
+export async function updateMe(
+  data: CoupleUpdateRequest
+): Promise<CouplePublicResponse> {
+  return apiClient<CouplePublicResponse>("/auth/me", {
+    method: "PUT",
+    body: JSON.stringify(data),
   });
 }
 

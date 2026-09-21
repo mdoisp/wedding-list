@@ -6,6 +6,7 @@ from app.database import get_db
 from app.models.couple import Couple
 from app.schemas import (
     CouplePublicResponse,
+    CoupleUpdateRequest,
     LoginRequest,
     RefreshRequest,
     RegisterRequest,
@@ -47,3 +48,24 @@ def refresh(data: RefreshRequest, db: Session = Depends(get_db)) -> TokenRespons
 @router.get("/me", response_model=CouplePublicResponse)
 def me(current_couple: Couple = Depends(get_current_couple)) -> Couple:
     return current_couple
+
+
+@router.put("/me", response_model=CouplePublicResponse)
+def update_me(
+    data: CoupleUpdateRequest,
+    current_couple: Couple = Depends(get_current_couple),
+    db: Session = Depends(get_db),
+) -> Couple:
+    if data.name is not None:
+        current_couple.name = data.name.strip()
+    if data.pix_key is not None:
+        current_couple.pix_key = data.pix_key.strip() or None
+    if data.pix_key_type is not None:
+        current_couple.pix_key_type = data.pix_key_type.strip() or None
+    if data.email_notifications_enabled is not None:
+        current_couple.email_notifications_enabled = data.email_notifications_enabled
+
+    db.commit()
+    db.refresh(current_couple)
+    return current_couple
+

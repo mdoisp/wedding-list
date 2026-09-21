@@ -114,7 +114,7 @@ export default function HomePage() {
               Seus convidados escolhem como preferem presentear
             </h2>
             <p className="mt-4 text-base text-[#475746]">
-              Cada convidado tem seu próprio estilo. No Wedding List, você oferece as duas opções
+              Cada convidado tem seu próprio estilo. No Amor em Lista, você oferece as duas opções
               no mesmo lugar, com total transparência.
             </p>
           </div>
@@ -180,7 +180,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* COMPARISON SECTION (Why Wedding List?) */}
+        {/* COMPARISON SECTION (Why Amor em Lista?) */}
         <section id="vantagens" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-[#F4EFEA] border-y border-[#E8E2D8]">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-block rounded-full bg-[#FAF8F5] border border-[#E8E2D8] px-3.5 py-1 text-xs font-bold tracking-wider text-[#384C37] uppercase">
@@ -227,7 +227,7 @@ export default function HomePage() {
               </CardContent>
             </Card>
 
-            {/* Wedding List */}
+            {/* Amor em Lista */}
             <Card className="border-[#D8D0C3] bg-white shadow-md relative overflow-hidden">
               <div className="absolute top-0 right-0 bg-[#384C37] text-white text-[11px] font-bold px-3.5 py-1 rounded-bl-xl tracking-wide">
                 100% LIVRE
@@ -237,7 +237,7 @@ export default function HomePage() {
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#EAF0E9] text-[#384C37]">
                     <CheckCircle2 className="h-5 w-5" />
                   </div>
-                  <h3 className="text-xl">Wedding List</h3>
+                  <h3 className="text-xl">Amor em Lista</h3>
                 </div>
 
                 <ul className="space-y-4 text-sm text-[#222B23]">
@@ -340,7 +340,7 @@ export default function HomePage() {
                   Os convidados são obrigados a dar dinheiro pelo Pix?
                 </h4>
                 <p className="text-sm text-[#5B6A5A] pl-7 leading-relaxed">
-                  Não! Essa é uma das grandes vantagens do Wedding List. Se o convidado quiser comprar o produto físico na loja (física ou online indicada pelo link), ele pode comprar onde preferir e apenas marcar o presente como reservado na lista. Já se preferir a praticidade de enviar o valor, ele pode fazer o Pix diretamente pelo QR Code da lista.
+                  Não! Essa é uma das grandes vantagens do Amor em Lista. Se o convidado quiser comprar o produto físico na loja (física ou online indicada pelo link), ele pode comprar onde preferir e apenas marcar o presente como reservado na lista. Já se preferir a praticidade de enviar o valor, ele pode fazer o Pix diretamente pelo QR Code da lista.
                 </p>
               </CardContent>
             </Card>
@@ -361,7 +361,7 @@ export default function HomePage() {
               <CardContent className="p-6">
                 <h4 className="flex items-center gap-2.5 text-base font-semibold text-[#182319] mb-2">
                   <HelpCircle className="h-5 w-5 text-[#384C37]" />
-                  O Wedding List cobra alguma comissão sobre os presentes?
+                  O Amor em Lista cobra alguma comissão sobre os presentes?
                 </h4>
                 <p className="text-sm text-[#5B6A5A] pl-7 leading-relaxed">
                   Nenhuma taxa! É 100% gratuito. Quando um convidado faz um Pix para você, a transferência ocorre diretamente da conta dele para a sua chave Pix cadastrada.
@@ -414,7 +414,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#6B776E]">
           <div className="flex items-center gap-2">
             <Heart className="h-4 w-4 fill-red-500 text-red-500" />
-            <span className="font-semibold text-[#182319]">Wedding List</span>
+            <span className="font-semibold text-[#182319]">Amor em Lista</span>
             <span>— Todos os direitos reservados.</span>
           </div>
           <div className="flex items-center gap-6">
