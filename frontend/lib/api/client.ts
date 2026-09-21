@@ -1,7 +1,27 @@
 import { getCookie } from "../cookies";
 
-export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL?.replace(/\/+$/, "") || "http://localhost:8000";
+export function getApiBaseUrl(): string {
+  // 1. Explicit env variable (if defined at build or runtime)
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return process.env.NEXT_PUBLIC_API_URL.replace(/\/+$/, "");
+  }
+
+  // 2. Client-side browser inspection
+  if (typeof window !== "undefined") {
+    const hostname = window.location.hostname;
+    // Local development
+    if (hostname === "localhost" || hostname === "127.0.0.1") {
+      return "http://localhost:8000";
+    }
+    // Production (Vercel, custom domains, etc.)
+    return "https://backend-wedding-list.up.railway.app";
+  }
+
+  // 3. Server-side Next.js fallback
+  return process.env.NODE_ENV === "production"
+    ? "https://backend-wedding-list.up.railway.app"
+    : "http://localhost:8000";
+}
 
 export class ApiError extends Error {
   status: number;
@@ -19,7 +39,8 @@ export async function apiClient<T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
-  const url = `${API_BASE_URL}${endpoint.startsWith("/") ? endpoint : `/${endpoint}`}`;
+  const baseUrl = getApiBaseUrl();
+  const url = `${baseUrl}${endpoint.startsWith("/") ? endpoint : `/${endpoint}`}`;
 
   const token = getCookie("access_token");
 
