@@ -325,7 +325,7 @@ Criar a página pública acessada pelos convidados via link único. Interface si
 - Server-side rendering melhora SEO e performance no mobile
 - QR Code retornado pelo backend como base64 PNG
 
-**Status:** [ ] pending
+**Status:** [x] completed
 
 ---
 
