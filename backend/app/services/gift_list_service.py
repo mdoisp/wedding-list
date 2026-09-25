@@ -14,7 +14,7 @@ class GiftListService:
     def create_list(self, couple_id: uuid.UUID, data: GiftListCreateRequest) -> GiftList:
         existing = self.get_list_by_couple(couple_id)
         if existing:
-            raise ConflictError("Couple already has an active gift list")
+            raise ConflictError("O casal já possui uma lista de presentes ativa")
 
         gift_list = GiftList(
             couple_id=couple_id,
@@ -36,9 +36,9 @@ class GiftListService:
     def get_list_by_id(self, list_id: uuid.UUID, couple_id: uuid.UUID) -> GiftList:
         gift_list = self.db.get(GiftList, list_id)
         if not gift_list:
-            raise NotFoundError("Gift list not found")
+            raise NotFoundError("Lista de presentes não encontrada")
         if gift_list.couple_id != couple_id:
-            raise ForbiddenError("Not authorized to access this gift list")
+            raise ForbiddenError("Você não tem permissão para acessar esta lista de presentes")
         return gift_list
 
     def update_list(

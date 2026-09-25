@@ -15,7 +15,7 @@ class AuthService:
     def register(self, data: RegisterRequest) -> Couple:
         existing = self.db.query(Couple).filter(Couple.email == data.email).first()
         if existing:
-            raise ValueError("Email already registered")
+            raise ValueError("E-mail já cadastrado")
 
         couple = Couple(
             name=data.name,
@@ -30,7 +30,7 @@ class AuthService:
     def authenticate(self, data: LoginRequest) -> Couple:
         couple = self.db.query(Couple).filter(Couple.email == data.email).first()
         if not couple or not verify_password(data.password, couple.hashed_password):
-            raise ValueError("Invalid credentials")
+            raise ValueError("E-mail ou senha inválidos")
         return couple
 
     def create_tokens(self, couple: Couple) -> TokenResponse:
@@ -44,12 +44,12 @@ class AuthService:
         payload = decode_refresh_token(token)
         couple_id = payload.get("sub")
         if not couple_id:
-            raise ValueError("Invalid token payload")
+            raise ValueError("Dados de autenticação inválidos")
         try:
             couple_uuid = uuid.UUID(couple_id)
         except (ValueError, TypeError) as exc:
-            raise ValueError("Invalid token payload") from exc
+            raise ValueError("Dados de autenticação inválidos") from exc
         couple = self.db.get(Couple, couple_uuid)
         if not couple:
-            raise ValueError("Couple not found")
+            raise ValueError("Casal não encontrado")
         return self.create_tokens(couple)

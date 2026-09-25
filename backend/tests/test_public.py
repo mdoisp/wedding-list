@@ -137,7 +137,7 @@ def test_get_public_list_not_found() -> None:
     random_token = uuid.uuid4()
     response = client.get(f"/public/{random_token}")
     assert response.status_code == 404
-    assert response.json()["detail"] == "Gift list not found"
+    assert response.json()["detail"] == "Lista de presentes não encontrada"
 
 
 def test_get_public_list_invalid_uuid() -> None:
@@ -201,7 +201,7 @@ def test_reserve_already_reserved_gift_returns_conflict() -> None:
         json={"guest_name": "Convidado 2", "guest_email": "convidado2@example.com"},
     )
     assert res2.status_code == 409
-    assert "already been reserved" in res2.json()["detail"]
+    assert "já foi reservado" in res2.json()["detail"]
 
 
 def test_reserve_gift_nonexistent_token() -> None:
@@ -212,7 +212,7 @@ def test_reserve_gift_nonexistent_token() -> None:
         json={"guest_name": "Visitante", "guest_email": "visitante@example.com"},
     )
     assert response.status_code == 404
-    assert response.json()["detail"] == "Gift list not found"
+    assert response.json()["detail"] == "Lista de presentes não encontrada"
 
 
 def test_reserve_gift_nonexistent_gift_in_list() -> None:
@@ -227,7 +227,7 @@ def test_reserve_gift_nonexistent_gift_in_list() -> None:
         json={"guest_name": "Visitante", "guest_email": "visitante@example.com"},
     )
     assert response.status_code == 404
-    assert "Gift not found in this list" in response.json()["detail"]
+    assert "Presente não encontrado nesta lista" in response.json()["detail"]
 
 
 def test_reserve_gift_from_other_list_rejected() -> None:
@@ -304,7 +304,7 @@ def test_service_reserve_gift_integrity_error_handled_as_conflict() -> None:
                     gifts[0].id,
                     ReserveGiftRequest(guest_name="Ana", guest_email="ana@example.com"),
                 )
-            assert "already been reserved" in str(exc_info.value)
+            assert "já foi reservado" in str(exc_info.value)
     finally:
         db.close()
 

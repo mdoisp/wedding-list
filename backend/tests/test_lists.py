@@ -325,7 +325,7 @@ def test_create_second_list_conflict() -> None:
     # Second list for same couple -> Conflict 409
     res2 = client.post("/lists", json={"title": "Segunda Lista"}, headers=headers)
     assert res2.status_code == 409
-    assert "active gift list" in res2.json()["detail"]
+    assert "lista de presentes ativa" in res2.json()["detail"]
 
 
 def test_get_lists_endpoint_separation() -> None:

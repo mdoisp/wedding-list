@@ -15,9 +15,9 @@ class GiftService:
     def _verify_list_ownership(self, list_id: uuid.UUID, couple_id: uuid.UUID) -> GiftList:
         gift_list = self.db.get(GiftList, list_id)
         if not gift_list:
-            raise NotFoundError("Gift list not found")
+            raise NotFoundError("Lista de presentes não encontrada")
         if gift_list.couple_id != couple_id:
-            raise ForbiddenError("Not authorized to access this gift list")
+            raise ForbiddenError("Você não tem permissão para acessar esta lista de presentes")
         return gift_list
 
     def add_gift(self, list_id: uuid.UUID, couple_id: uuid.UUID, data: GiftCreateRequest) -> Gift:
@@ -49,7 +49,7 @@ class GiftService:
         self._verify_list_ownership(list_id, couple_id)
         gift = self.db.get(Gift, gift_id)
         if not gift or gift.gift_list_id != list_id:
-            raise NotFoundError("Gift not found")
+            raise NotFoundError("Presente não encontrado")
         return gift
 
     def update_gift(

@@ -1,7 +1,14 @@
 from fastapi import FastAPI
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.exceptions import HTTPException
 
 from app.config import settings
+from app.error_handlers import (
+    localized_http_error,
+    localized_internal_error,
+    localized_validation_error,
+)
 from app.views.auth import router as auth_router
 from app.views.health import router as health_router
 from app.views.lists import router as lists_router
@@ -12,6 +19,10 @@ app = FastAPI(
     description="API para gerenciamento de listas de presentes de casamento",
     version="0.1.0",
 )
+
+app.add_exception_handler(HTTPException, localized_http_error)
+app.add_exception_handler(RequestValidationError, localized_validation_error)
+app.add_exception_handler(Exception, localized_internal_error)
 
 origins = [origin.strip() for origin in settings.allowed_origins.split(",") if origin.strip()]
 

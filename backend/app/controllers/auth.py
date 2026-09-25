@@ -26,7 +26,7 @@ def get_current_couple(
     except (JWTError, ValueError, TypeError) as exc:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
+            detail="Não foi possível validar suas credenciais",
             headers={"WWW-Authenticate": "Bearer"},
         ) from exc
 
@@ -34,7 +34,7 @@ def get_current_couple(
     if not couple:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
+            detail="Não foi possível validar suas credenciais",
             headers={"WWW-Authenticate": "Bearer"},
         )
     return couple

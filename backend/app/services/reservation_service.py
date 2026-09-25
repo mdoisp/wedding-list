@@ -25,7 +25,7 @@ class ReservationService:
             .first()
         )
         if not gift_list:
-            raise NotFoundError("Gift list not found")
+            raise NotFoundError("Lista de presentes não encontrada")
         return gift_list
 
     def reserve_gift(
@@ -42,7 +42,7 @@ class ReservationService:
             .first()
         )
         if not gift_list:
-            raise NotFoundError("Gift list not found")
+            raise NotFoundError("Lista de presentes não encontrada")
 
         gift = (
             self.db.query(Gift)
@@ -51,10 +51,10 @@ class ReservationService:
             .first()
         )
         if not gift:
-            raise NotFoundError("Gift not found in this list")
+            raise NotFoundError("Presente não encontrado nesta lista")
 
         if gift.is_reserved:
-            raise ConflictError("This gift has already been reserved")
+            raise ConflictError("Este presente já foi reservado")
 
         gift.is_reserved = True
         reservation = Reservation(
@@ -68,7 +68,7 @@ class ReservationService:
             self.db.commit()
         except IntegrityError as exc:
             self.db.rollback()
-            raise ConflictError("This gift has already been reserved") from exc
+            raise ConflictError("Este presente já foi reservado") from exc
 
         self.db.refresh(reservation)
 

@@ -42,7 +42,10 @@ def refresh(data: RefreshRequest, db: Session = Depends(get_db)) -> TokenRespons
     try:
         return service.refresh_token(data.refresh_token)
     except Exception as exc:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=str(exc)) from exc
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Sua sessão é inválida ou expirou. Entre novamente.",
+        ) from exc
 
 
 @router.get("/me", response_model=CouplePublicResponse)
@@ -68,4 +71,3 @@ def update_me(
     db.commit()
     db.refresh(current_couple)
     return current_couple
-

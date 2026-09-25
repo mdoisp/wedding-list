@@ -53,10 +53,18 @@ export async function apiClient<T>(
     headers["Authorization"] = `Bearer ${token}`;
   }
 
-  const response = await fetch(url, {
-    ...options,
-    headers,
-  });
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      ...options,
+      headers,
+    });
+  } catch {
+    throw new ApiError(
+      "Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.",
+      0
+    );
+  }
 
   if (!response.ok) {
     let errorMessage = `Erro HTTP ${response.status}`;
@@ -69,7 +77,9 @@ export async function apiClient<T>(
         if (typeof detail === "string") {
           errorMessage = detail;
         } else if (Array.isArray(detail)) {
-          errorMessage = detail.map((err) => err.msg || JSON.stringify(err)).join(", ");
+          errorMessage = detail.map((err) =>
+            typeof err?.msg === "string" ? err.msg : "Os dados informados são inválidos."
+          ).join(", ") || errorMessage;
         }
       }
     } catch {
@@ -84,5 +94,12 @@ export async function apiClient<T>(
     return null as T;
   }
 
-  return response.json() as Promise<T>;
+  try {
+    return await response.json() as T;
+  } catch {
+    throw new ApiError(
+      "Não foi possível interpretar a resposta do servidor. Tente novamente.",
+      response.status
+    );
+  }
 }

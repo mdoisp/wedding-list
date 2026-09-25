@@ -253,7 +253,7 @@ def test_get_pix_qrcode_not_found_token() -> None:
     random_token = uuid.uuid4()
     response = client.get(f"/public/{random_token}/pix-qrcode")
     assert response.status_code == 404
-    assert response.json()["detail"] == "Gift list not found"
+    assert response.json()["detail"] == "Lista de presentes não encontrada"
 
 
 def test_get_pix_qrcode_couple_without_pix_key() -> None:
@@ -264,7 +264,7 @@ def test_get_pix_qrcode_couple_without_pix_key() -> None:
 
     response = client.get(f"/public/{token}/pix-qrcode")
     assert response.status_code == 400
-    assert "not configured a Pix key" in response.json()["detail"]
+    assert "ainda não cadastrou uma chave Pix" in response.json()["detail"]
 
 
 def test_get_pix_qrcode_negative_amount_validation() -> None:

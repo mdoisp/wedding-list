@@ -88,7 +88,7 @@ def get_pix_qrcode(
     if not couple or not couple.pix_key:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Couple has not configured a Pix key",
+            detail="O casal ainda não cadastrou uma chave Pix",
         )
 
     pix_payload = generate_pix_payload(
