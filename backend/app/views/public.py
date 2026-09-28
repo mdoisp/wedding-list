@@ -7,10 +7,13 @@ from fastapi import (
     Depends,
     HTTPException,
     Query,
+    Request,
     Response,
     status,
 )
 from fastapi.responses import JSONResponse
+from slowapi import Limiter
+from slowapi.util import get_remote_address
 from sqlalchemy.orm import Session
 
 from app.database import get_db
@@ -30,6 +33,7 @@ from app.utils.pix import (
 )
 
 router = APIRouter(prefix="/public", tags=["Public"])
+limiter = Limiter(key_func=get_remote_address)
 
 
 @router.get("/{public_token}", response_model=GiftListPublicResponse)
@@ -49,7 +53,9 @@ def get_public_list(
     response_model=ReservationResponse,
     status_code=status.HTTP_201_CREATED,
 )
+@limiter.limit("10/minute")
 def reserve_gift(
+    request: Request,
     public_token: uuid.UUID,
     gift_id: uuid.UUID,
     data: ReserveGiftRequest,
