@@ -19,3 +19,6 @@ coverage.xml
 node_modules/
 .next/
 .vercel/
+.agents
+GEMINI.md
+wedding-list-plan.md
