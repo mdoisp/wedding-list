@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     email_from: str = "Wedding List <onboarding@resend.dev>"
     environment: str = "development"
     allowed_origins: str = "*"
+    log_level: str = "INFO"
 
     @field_validator("database_url", mode="before")
     @classmethod

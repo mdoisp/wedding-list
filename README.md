@@ -124,14 +124,23 @@ wedding-list/
 > O backend no Railway é implantado automaticamente a cada push na branch `main` via integração nativa do GitHub.
 
 
+### Migrations automáticas
+
+As migrations do Alembic são executadas automaticamente no startup do container (`backend/start.sh` roda `alembic upgrade head` antes de iniciar o Uvicorn). O Railway aguarda o container ficar saudável antes de rotear tráfego, garantindo zero-downtime na troca de versão.
+
 ### Variáveis de ambiente em produção (Railway)
 
 Configure no painel da Railway (serviço `backend`):
-- `DATABASE_URL` — URL do banco PostgreSQL (referência `${{Postgres.DATABASE_URL}}`)
-- `SECRET_KEY` — chave secreta para JWT (gerada aleatoriamente)
-- `RESEND_API_KEY` — chave de API do Resend (opcional inicialmente)
-- `ENVIRONMENT=production`
-- `ALLOWED_ORIGINS` — URL do frontend na Vercel (ex: `https://seu-projeto.vercel.app`)
+
+| Variável | Descrição |
+|---|---|
+| `DATABASE_URL` | URL do banco PostgreSQL (referência `${{Postgres.DATABASE_URL}}`) |
+| `SECRET_KEY` | Chave secreta para JWT — gere com `openssl rand -hex 32` |
+| `RESEND_API_KEY` | Chave de API do Resend |
+| `EMAIL_FROM` | Endereço de origem dos e-mails (ex: `Wedding List <no-reply@seudominio.com>`) |
+| `ENVIRONMENT` | `production` |
+| `ALLOWED_ORIGINS` | URL do frontend na Vercel (ex: `https://seu-projeto.vercel.app`) |
+| `LOG_LEVEL` | `INFO` (padrão) — use `DEBUG` para diagnóstico |
 
 ### Variáveis de ambiente em produção (Vercel)
 
@@ -160,6 +169,16 @@ Noivos                    Sistema                  Convidados
   │                          │◄─ Acessa QR Code Pix ────┤
   │◄─ Pix recebido ──────────┤◄─ Pagamento via app ─────┤
 ```
+
+## Segurança e Observabilidade
+
+| Recurso | Implementação |
+|---|---|
+| **CORS** | Origens restritas via `ALLOWED_ORIGINS` (domínio Vercel em produção) |
+| **Rate limiting** | `POST /public/{token}/gifts/{id}/reserve` limitado a 10 req/min por IP (`slowapi`) |
+| **Migrations no deploy** | `alembic upgrade head` executado no startup do container antes do Uvicorn |
+| **Logs estruturados** | Todos os logs emitidos em JSON — compatível com Railway Logs, Datadog, Grafana Loki |
+| **Segredos** | Todas as variáveis sensíveis em variáveis de ambiente; nenhum valor hardcoded no código |
 
 ## Licença
 
